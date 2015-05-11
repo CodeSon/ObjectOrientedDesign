@@ -22,10 +22,16 @@ public class Controller {
 	Vehicle car1 = new Vehicle("ABD 345","VAN","brandNew",2015);
 	Vehicle car2 = new Vehicle("AAA 456","CONVERTIBLE","RUSTY",1999);
 	Queue q = new Queue();
-
-	   
-	
 	Garage g=new Garage(true, false);
+	
+	
+	
+	
+	public Queue getQueue() {
+
+		return this.q;
+	}
+
 	
 	
 	//constructor

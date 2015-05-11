@@ -17,7 +17,6 @@ public class InspectionQueue {
 	 * new work order to the list or to get the next work order in line
 	 */
 	private LinkedList<WorkOrder> queue = new LinkedList<WorkOrder> ();
-	private Node head;
 	
 public void addNewOrder(WorkOrder workOrder){
 	
@@ -26,18 +25,11 @@ public void addNewOrder(WorkOrder workOrder){
 	
 	
 }
-/**
+
 public void getNextOrder(){
-	queue.getNext();
-}**/
-
-public Node getHead() {
-	return head;
+	queue.getFirst();
 }
 
-public void setHead(Node head) {
-	this.head = head;
-}
 	
 	
 	

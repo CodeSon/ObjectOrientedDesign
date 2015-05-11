@@ -14,6 +14,12 @@ import java.util.NoSuchElementException;
  *
  */
 public class Queue {
+	
+	public LinkedList<VehicleAndPosition> getQ(){
+		
+		
+		return this.queue;
+	}
 
 	public Queue(){
 

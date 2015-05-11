@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * THis class saves the vehicle and what position it has in the q
+ * @author David
+ *
+ */
 public class VehicleAndPosition {
 	/**
 	 * Implemented encapsulation by declaring a variable property of the type
@@ -37,6 +41,11 @@ public class VehicleAndPosition {
 		this.vehicle = vehicle;
 		this.queueNumber = queueNumber;
 
+	}
+	
+public String toString(){
+		
+		return queueNumber +" " + vehicle;
 	}
 
 }
