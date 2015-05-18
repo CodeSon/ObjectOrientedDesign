@@ -12,7 +12,7 @@ import view.View;
  * @author David
  * Inspection queue contains a queue of different sets of 
  *  inspections
- * all calls to the model pass here.
+ * all calls to the model passes here.
  */
 
 public class Controller {
@@ -23,8 +23,6 @@ public class Controller {
 	Vehicle car2 = new Vehicle("AAA 456","CONVERTIBLE","RUSTY",1999);
 	Queue q = new Queue();
 	Garage g=new Garage(true, false);
-	
-	
 	
 	
 	public Queue getQueue() {
