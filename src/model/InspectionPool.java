@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import javax.xml.soap.Node;
@@ -13,14 +14,14 @@ import model.WorkOrder;
 public class InspectionPool {
 	
 	/**
-	 * LinkedList declaration so as to be able to add a 
-	 * new work order to the list or to get the next work order in line
+	 * HashMap declaration so as to be able to add a 
+	 * new work order to the list 
 	 */
-	private LinkedList<WorkOrder> queue = new LinkedList<WorkOrder> ();
+	private HashMap<String, WorkOrder> pool = new HashMap<String,WorkOrder> ();
 	
 public void addNewOrder(WorkOrder workOrder){
 	
-	queue.add(workOrder);
+	pool.put(workOrder.getRegistrationNumber(), workOrder);
 	
 	
 	

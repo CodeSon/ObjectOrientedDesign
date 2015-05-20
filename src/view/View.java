@@ -94,6 +94,13 @@ public class View {
 		return null;
 	}
 	private void addVehicleToQ() {
+		System.out.println("Please enter vehicle's registration number");
+		System.out.println("-------------------------------------------");
+		System.out.println();
+		String input;
+		java.util.Scanner in = new Scanner(System.in);
+			in.useLocale(java.util.Locale.US);
+			in.nextLine();
 		
 
 

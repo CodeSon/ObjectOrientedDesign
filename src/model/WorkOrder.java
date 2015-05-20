@@ -1,7 +1,8 @@
 package model;
 import java.util.LinkedList;
 /**
- * a
+ * wpork order class has 1) A vehicle
+ * 						 2) check list
  * @author David
  *
  */
@@ -58,6 +59,14 @@ public class WorkOrder {
 
 	public Vehicle getVehicle() {
 		return vehicle;
+	}
+	
+	public String getRegistrationNumber(){
+		
+		
+		
+		return vehicle.getRegNummer();
+		
 	}
 
 	 
