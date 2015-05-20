@@ -10,7 +10,7 @@ import model.WorkOrder;
  * @author David
  *
  */
-public class InspectionQueue {
+public class InspectionPool {
 	
 	/**
 	 * LinkedList declaration so as to be able to add a 
@@ -26,8 +26,8 @@ public void addNewOrder(WorkOrder workOrder){
 	
 }
 
-public void getNextOrder(){
-	queue.getFirst();
+//public workOrder getOrderFor(String regnummer){
+	//queue.getFirst();
 }
 
 	
@@ -35,4 +35,4 @@ public void getNextOrder(){
 	
 	
 
-}
+

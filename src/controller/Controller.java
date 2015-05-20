@@ -1,4 +1,5 @@
 package controller;
+import model.InspectionPool;
 import model.Vehicle;
 import model.WorkOrder;
 import model.Queue;
@@ -17,7 +18,7 @@ import view.View;
 
 public class Controller {
 	
-	InspectionQueue inspectionQueue;
+	InspectionPool inspectionPool;
 	WorkOrderItem workItem = new WorkOrderItem("Check engine", 1000.0);
 	Vehicle car1 = new Vehicle("ABD 345","VAN","brandNew",2015);
 	Vehicle car2 = new Vehicle("AAA 456","CONVERTIBLE","RUSTY",1999);

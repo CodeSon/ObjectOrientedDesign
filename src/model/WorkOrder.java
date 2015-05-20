@@ -1,10 +1,5 @@
 package model;
 import java.util.LinkedList;
-
-import controller.InspectionQueue;
-import controller.Controller;
-
-
 /**
  * a
  * @author David
