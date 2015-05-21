@@ -3,7 +3,6 @@ import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
 import model.Payment;
 import model.Queue;
 import model.Vehicle;
@@ -58,11 +57,6 @@ public class View {
 			}
 		}
 
-
-
-
-
-
 	}
 
 	/**
@@ -70,15 +64,15 @@ public class View {
 	 */
 
 	private void createFakeWorkOrderList() {
-		
+
 		WorkOrder[] workOrders= {
 				new WorkOrder(new Vehicle("TJP 986","PersonBil","Citroen c4",2007)),
 				new WorkOrder(new Vehicle("WEP 111","PersonBil","BMW",2010)),
 				new WorkOrder(new Vehicle("PRK 455","Vagn","Volvo",1999))};
-		
-		
-		
-		
+
+
+
+
 	}
 	private void addDebugVehiclesToQ() {
 		// TODO this whole method must be changed, Only debug now.1
@@ -93,15 +87,36 @@ public class View {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	/**
+	 * AddVehicleToQ method which adds vehicle to the queue and  also
+	 */
 	private void addVehicleToQ() {
 		System.out.println("Please enter vehicle's registration number");
 		System.out.println("-------------------------------------------");
 		System.out.println();
 		String input;
+		boolean invalidInput = true;
+		while(invalidInput){
 		java.util.Scanner in = new Scanner(System.in);
-			in.useLocale(java.util.Locale.US);
-			in.nextLine();
+		in.useLocale(java.util.Locale.US);
+		try{
+		 in.nextLine();
+		}catch(NoSuchElementException e)
 		
+		{System.out.println("Line not found");
+		
+		}
+		catch(IllegalStateException e){
+			System.out.println("if this scanner is closed");
+		}
+		
+		
+		}
+		
+
+		
+
 
 
 	}
@@ -122,7 +137,6 @@ public class View {
 
 		}
 		return;
-
 	}
 	private int  readUserInput() {
 
@@ -141,8 +155,7 @@ public class View {
 				return in.nextInt();
 
 			} catch (InputMismatchException e) {
-				System.out.println("input mismatch or input is out of range exception"
-						+ "The input must be a number:)");
+				System.out.println("input mismatch exception: The input must be a number :)");
 			}//TODO: Implement 2 more try catches and one try catch for the EXEPTION CLASS
 
 			catch(NoSuchElementException e)
