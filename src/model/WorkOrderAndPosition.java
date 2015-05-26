@@ -4,12 +4,12 @@ package model;
  * @author David
  *
  */
-public class VehicleAndPosition {
+public class WorkOrderAndPosition {
 	/**
 	 * Implemented encapsulation by declaring a variable property of the type
 	 * vehicle
 	 */
-	private Vehicle vehicle;
+	private WorkOrder workorder;
 	private int queueNumber;
 
 	/**
@@ -21,9 +21,9 @@ public class VehicleAndPosition {
 	/*
 	 * returns current vehicle 
 	 */
-	public Vehicle getVehicle() {
+	public WorkOrder getWorkOrder() {
 
-		return this.vehicle;
+		return this.workorder;
 
 	}
 	/*
@@ -36,16 +36,16 @@ public class VehicleAndPosition {
 	/*
 	 * returns position of vehicle and current que number
 	 */
-	public VehicleAndPosition(Vehicle vehicle, int queueNumber) {
+	public WorkOrderAndPosition(WorkOrder workorder, int queueNumber) {
 
-		this.vehicle = vehicle;
+		this.workorder = workorder;
 		this.queueNumber = queueNumber;
 
 	}
 	
 public String toString(){
 		
-		return queueNumber +" " + vehicle;
+		return queueNumber +" " + workorder;
 	}
 
 }

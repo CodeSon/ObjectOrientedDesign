@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
  */
 public class Queue {
 	
-	public LinkedList<VehicleAndPosition> getQ(){
+	public LinkedList<WorkOrderAndPosition> getQ(){
 		
 		
 		return this.queue;
@@ -29,22 +29,22 @@ public class Queue {
 	 * new vehicle to the queue or to get the next  in line
 	 */
 	int nextAvailableQueueNumber = 0;
-	LinkedList<VehicleAndPosition> queue= new LinkedList<VehicleAndPosition>();
+	LinkedList<WorkOrderAndPosition> queue= new LinkedList<WorkOrderAndPosition>();
 
 	/*
 	 * gets next vehicle in que and having a check to catch an empty queue
 	 */
 
-	public Vehicle getNextVehicle(){
+	public WorkOrder getNextVehicle(){
 
 
 		try{
-			VehicleAndPosition vp = queue.removeFirst();
+			WorkOrderAndPosition vp = queue.removeFirst();
 
 			if (vp==null){
 				return null;
 			}
-			Vehicle vehicle =vp.getVehicle();
+			WorkOrder vehicle =vp.getWorkOrder();
 
 
 
@@ -60,11 +60,11 @@ public class Queue {
 	 * adds a new vehicle to the queue.
 	 */
 
-	public int addVehicle(Vehicle vehicle){
+	public int addWorkOrder(WorkOrder workorder){
 
 
 
-		queue.add(new VehicleAndPosition(vehicle,nextAvailableQueueNumber)); 
+		queue.add(new WorkOrderAndPosition(workorder,nextAvailableQueueNumber)); 
 
 		return this.nextAvailableQueueNumber++;
 

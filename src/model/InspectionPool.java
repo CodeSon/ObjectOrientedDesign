@@ -13,7 +13,7 @@ import model.WorkOrder;
  */
 public class InspectionPool {
 	
-	/**
+	/*
 	 * HashMap declaration so as to be able to add a 
 	 * new work order to the list 
 	 */
@@ -23,9 +23,28 @@ public void addNewOrder(WorkOrder workOrder){
 	
 	pool.put(workOrder.getRegistrationNumber(), workOrder);
 	
+	}
+
+/**getVehicle finds the vehicle with the given registration number
+ * in the hashMap and return it.
+ * 
+ * @param regno
+ * @throws NoSuchVehicleException back if the given registration number isn't found in the pool
+ */
+public WorkOrder getWorkOrder(String regno) throws NoSuchVehicleException {
+	 
+	WorkOrder validWorkOrder = this.pool.get(regno);
+		if(validWorkOrder ==null){
+		throw new NoSuchVehicleException();
+		}
+	else
+		
+		return validWorkOrder;
+		
 	
+
 	
-}
+	}
 
 //public workOrder getOrderFor(String regnummer){
 	//queue.getFirst();

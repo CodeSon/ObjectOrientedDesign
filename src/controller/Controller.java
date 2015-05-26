@@ -1,5 +1,6 @@
 package controller;
 import model.InspectionPool;
+import model.NoSuchVehicleException;
 import model.Vehicle;
 import model.WorkOrder;
 import model.Queue;
@@ -27,21 +28,19 @@ public class Controller {
 
 		return this.q;
 	}
-
-	
-	
-	/**
+/**
 	 * 
 	 */
 	public Controller( ){
-		WorkOrderItem workItem1 = new WorkOrderItem("Check engine", 1000.0);
-		WorkOrderItem workItem2 = new WorkOrderItem("Check tyres", 500.0);
-		WorkOrderItem workItem3 = new WorkOrderItem("Check oil", 250.0);
 		Vehicle car1 = new Vehicle("ABD 345","VAN","brandNew",2015);
 		Vehicle car2 = new Vehicle("AAA 456","FLAT","wornOut",1999);
 		Vehicle car3 = new Vehicle("ABC 344","estate","fresh",1999);
 		Vehicle car4 = new Vehicle("UNG 112","truck","RUSTY",1999);
 		Vehicle car5 = new Vehicle("FFX 908","wagon","shiny",1999);
+		
+		WorkOrderItem workItem1 = new WorkOrderItem("Check engine", 1000.0);
+		WorkOrderItem workItem2 = new WorkOrderItem("Check tyres", 500.0);
+		WorkOrderItem workItem3 = new WorkOrderItem("Check oil", 250.0);
 		
 		WorkOrder work1m = new WorkOrder(car1);
 		work1m.addItem(workItem1);
@@ -79,8 +78,8 @@ public class Controller {
 	
 	
 	public int makeNewInspection(){
-		Vehicle car1 = null;
-		return q.addVehicle(car1);
+		WorkOrder car1 = null;
+		return q.addWorkOrder(car1);
 		
 		
 	}
@@ -107,5 +106,21 @@ public String checkInspection(){
 public String customerCreditCardInfo(){
 	return null;
 	}
+
+/**
+ * 
+ * @return
+ * @throws NoSuchVehicleException
+ */
+public int findVehicle(String regno) throws NoSuchVehicleException {
+	try {
+		WorkOrder workorder = this.inspectionPool.getWorkOrder(regno);
+		
+		int myq = this.q.addWorkOrder(workorder);
+		return myq;
+	} catch (NoSuchVehicleException e) {
+		throw new NoSuchVehicleException();
+	}
+}
 
 }

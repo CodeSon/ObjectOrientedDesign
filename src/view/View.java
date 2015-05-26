@@ -3,12 +3,9 @@ import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import model.Payment;
-import model.Queue;
-import model.Vehicle;
-import model.VehicleAndPosition;
-import model.WorkOrder;
-import model.WorkOrderItem;
+
+import model.NoSuchVehicleException;
+import model.WorkOrderAndPosition;
 import controller.Controller;
 
 
@@ -34,9 +31,6 @@ public class View {
 	 */
 	public void run(){
 
-		addDebugVehiclesToQ();
-		createFakeWorkOrderList();
-
 		while (true){
 			printWelcomeScreen();
 			System.out.println();
@@ -49,7 +43,7 @@ public class View {
 				addVehicleToQ();
 				break;
 			case 3:
-				VehicleAndPosition nextVehicle= getNextVehicle();
+				WorkOrderAndPosition nextVehicle= getNextVehicle();
 			case 0:
 				System.exit(0);
 			default: System.out.println("Valid Values 1,2 or 3");
@@ -59,72 +53,55 @@ public class View {
 
 	}
 
-	/**
-	 * faking work order list temp.
-	 */
-
-	private void createFakeWorkOrderList() {
-
-		WorkOrder[] workOrders= {
-				new WorkOrder(new Vehicle("TJP 986","PersonBil","Citroen c4",2007)),
-				new WorkOrder(new Vehicle("WEP 111","PersonBil","BMW",2010)),
-				new WorkOrder(new Vehicle("PRK 455","Vagn","Volvo",1999))};
-
-
-
-
-	}
-	private void addDebugVehiclesToQ() {
-		// TODO this whole method must be changed, Only debug now.1
-		Vehicle car1 = new Vehicle("ABD 345","VAN","brandNew",2015);
-		Vehicle car2 = new Vehicle("AAA 456","CONVERTIBLE","RUSTY",1999);
-
-		this.contr.getQueue().addVehicle(car1);
-		this.contr.getQueue().addVehicle(car2);
-
-	}
-	private VehicleAndPosition getNextVehicle() {
+	private WorkOrderAndPosition getNextVehicle() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	/**
-	 * AddVehicleToQ method which adds vehicle to the queue and  also
+	 * AddVehicleToQ method which adds vehicle to the queue
 	 */
 	private void addVehicleToQ() {
-		System.out.println("Please enter vehicle's registration number");
-		System.out.println("-------------------------------------------");
-		System.out.println();
-		String input;
+		
 		boolean invalidInput = true;
 		while(invalidInput){
-		java.util.Scanner in = new Scanner(System.in);
-		in.useLocale(java.util.Locale.US);
-		try{
-		 in.nextLine();
-		}catch(NoSuchElementException e)
-		
-		{System.out.println("Line not found");
-		
+			System.out.println("Please enter vehicle's registration number");
+			System.out.println("-------------------------------------------");
+			System.out.println();
+			String input = "";
+			
+			java.util.Scanner in = new Scanner(System.in);
+			in.useLocale(java.util.Locale.US);
+			try{
+				input = in.nextLine();
+				//in.close();
+				
+				// asking the controller to find vehicle in the pool and give that vehicle
+				// a queue number to be shown to the customer
+				int qno = contr.findVehicle(input);
+				System.out.println("Vehicle " + input + " has queue number " + qno  );
+				System.out.println();
+				System.out.println("press any number to go back");
+				readUserInput();
+				
+				invalidInput = false;
+			} 
+			catch(NoSuchElementException e) {
+				System.out.println("Line not found");
+			}
+			catch(IllegalStateException e){
+				System.out.println("Sanner is closed");
+			} catch (NoSuchVehicleException e) {
+				System.out.println("Sorry, there's no vehicle with this registration number. Please try again");
+			}	
 		}
-		catch(IllegalStateException e){
-			System.out.println("if this scanner is closed");
-		}
-		
-		
-		}
-		
-
-		
-
-
-
 	}
+	
 	private void showQ() {
 		System.out.println("Inspection Queue");
 		System.out.println("----------------");
-		LinkedList<VehicleAndPosition> inspectionQ = this.contr.getQueue().getQ();
-		for (VehicleAndPosition vehiclepos :inspectionQ ){
+		LinkedList<WorkOrderAndPosition> inspectionQ = this.contr.getQueue().getQ();
+		for (WorkOrderAndPosition vehiclepos :inspectionQ ){
 			System.out.println(vehiclepos);
 		}
 
@@ -139,8 +116,6 @@ public class View {
 		return;
 	}
 	private int  readUserInput() {
-
-
 		/**
 		 * Exceptions  to: 1) handle if input is not an Integer expression or is out of range
 		 * 			       2) handle exhausted input
@@ -152,7 +127,9 @@ public class View {
 			java.util.Scanner in = new Scanner(System.in);
 			in.useLocale(java.util.Locale.US);
 			try {
-				return in.nextInt();
+				choice = in.nextInt();
+				//in.close();
+				return choice;
 
 			} catch (InputMismatchException e) {
 				System.out.println("input mismatch exception: The input must be a number :)");
@@ -160,32 +137,24 @@ public class View {
 
 			catch(NoSuchElementException e)
 			{
-				System.out.println("");
+				System.out.println("You have to write something");
 			}
 			catch (IllegalStateException e)
 			{
-
+				System.out.println("Scanner not closed");
 			}
 
 		}
 		return choice;
-
-
-
 	}
-	private Object Scanner() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	private void printWelcomeScreen() {
-
-
 		System.out.println("Welcome");
 		System.out.println("-------");
 		System.out.println();
-		System.out.println("Choose a number");
+		System.out.println("Choose options 1, 2 or 3. Then 0 to return to main ");
 		System.out.println();
-		System.out.println("1. Show queue");
+		System.out.println("1. Show inspection queue");
 		System.out.println();
 		System.out.println("2. Add Vehicle to the queue");
 		System.out.println();

@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.*;
 import model.Queue;
 import model.Vehicle;
+import model.WorkOrder;
 import model.WorkOrderItem;
 
 import org.junit.Before;
@@ -13,13 +14,15 @@ import org.junit.Test;
  *
  */
 public class TestQueue {
-	private Vehicle vehicle;
-	private Vehicle specialVehicle;
+	private WorkOrder workorder1;
+	private WorkOrder specialWorkorder;
 	//creating vehicles
 	@Before
 	public void setUp() throws Exception {
-		this.vehicle = new Vehicle("ABC 123", "Car", "Ugly", 2008);
-		this.specialVehicle = new Vehicle("XYZ 987", "Van", "Nice", 2015);
+		Vehicle myCar = new Vehicle("SKE","Kombi","Okay", 2013);
+		this.workorder1 = new WorkOrder(myCar);
+		Vehicle specialVehicle = new Vehicle("XYZ 987", "Van", "Nice", 2015);
+		this.specialWorkorder= new WorkOrder(specialVehicle);
 	}
 	// testing if the production of queue numbers work effectively
 	@Test
@@ -27,15 +30,15 @@ public class TestQueue {
 		Queue q = new Queue();
 		int qNo = 1233445;
 		
-		qNo = q.addVehicle(vehicle);
+		qNo = q.addWorkOrder(workorder1);
 		
 		assertEquals("First Queue Number doesn't match", 0, qNo);
 		
-		qNo = q.addVehicle(vehicle);
+		qNo = q.addWorkOrder(workorder1);
 		
 		assertEquals("Second Queue Number doesn't match", 1, qNo);
 		
-		qNo = q.addVehicle(vehicle);
+		qNo = q.addWorkOrder(workorder1);
 		
 		assertEquals("Third Queue Number doesn't match", 2, qNo);
 	}
@@ -46,13 +49,13 @@ public class TestQueue {
 		WorkOrderItem work = new WorkOrderItem("Check engine", 1000.0);
 		Queue q = new Queue();
 		//adding three vehicles to the queue and adding one of them twice
-		q.addVehicle(specialVehicle);
-		q.addVehicle(vehicle);
-		q.addVehicle(vehicle);
+		q.addWorkOrder(specialWorkorder);
+		q.addWorkOrder(workorder1);
+		q.addWorkOrder(workorder1);
 		
-		assertEquals("Special Vehicles don't match", specialVehicle, q.getNextVehicle());
-		assertEquals("Vehicles don't match", vehicle, q.getNextVehicle());
-		assertEquals("Vehicles don't match", vehicle, q.getNextVehicle());
+		assertEquals("Special Vehicles don't match", specialWorkorder, q.getNextVehicle());
+		assertEquals("Vehicles don't match", workorder1, q.getNextVehicle());
+		assertEquals("Vehicles don't match", workorder1, q.getNextVehicle());
 		assertEquals("Vehicles don't match", null, q.getNextVehicle());
 		//added a null to test for an empty queue
 	}
