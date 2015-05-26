@@ -6,6 +6,7 @@ import model.WorkOrder;
 import model.Queue;
 import model.Garage;
 import model.WorkOrderItem;
+import model.NoVehicleInQueueException;
 import view.View;
 
 /**
@@ -41,26 +42,27 @@ public class Controller {
 		WorkOrderItem workItem1 = new WorkOrderItem("Check engine", 1000.0);
 		WorkOrderItem workItem2 = new WorkOrderItem("Check tyres", 500.0);
 		WorkOrderItem workItem3 = new WorkOrderItem("Check oil", 250.0);
-		
+	
+		//creating work orders and adding items
 		WorkOrder work1m = new WorkOrder(car1);
 		work1m.addItem(workItem1);
 		work1m.addItem(workItem2);
 		work1m.addItem(workItem3);
 		
 		WorkOrder work2m = new WorkOrder(car2);
-		work1m.addItem(workItem2);
+		work2m.addItem(workItem2);
 		
 		WorkOrder work3m = new WorkOrder(car3);
-		work1m.addItem(workItem3);
-		work1m.addItem(workItem1);
+		work3m.addItem(workItem3);
+		work3m.addItem(workItem1);
 		
 		WorkOrder work4m = new WorkOrder(car4);
-		work1m.addItem(workItem2);
-		work1m.addItem(workItem1);
-		work1m.addItem(workItem3);
+		work4m.addItem(workItem2);
+		work4m.addItem(workItem1);
+		work4m.addItem(workItem3);
 		
 		WorkOrder work5m = new WorkOrder(car5);
-		work1m.addItem(workItem3);
+		work5m.addItem(workItem3);
 		
 		inspectionPool.addNewOrder(work1m);
 		inspectionPool.addNewOrder(work4m);
@@ -87,8 +89,15 @@ public class Controller {
 	
 		
 
-	public String getNextVehicle(){
-		return q.getNextVehicle().toString();
+	public WorkOrder getNextWorkOrder() throws NoVehicleInQueueException, Exception{
+		try {
+			return q.getNextVehicle();
+		} catch (NoVehicleInQueueException e) {
+			throw new NoVehicleInQueueException();
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
+		
 	}
 	
 	

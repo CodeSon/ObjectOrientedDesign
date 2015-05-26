@@ -1,6 +1,7 @@
 package tests;
 
 import static org.junit.Assert.*;
+import model.NoVehicleInQueueException;
 import model.Queue;
 import model.Vehicle;
 import model.WorkOrder;
@@ -53,11 +54,20 @@ public class TestQueue {
 		q.addWorkOrder(workorder1);
 		q.addWorkOrder(workorder1);
 		
-		assertEquals("Special Vehicles don't match", specialWorkorder, q.getNextVehicle());
-		assertEquals("Vehicles don't match", workorder1, q.getNextVehicle());
-		assertEquals("Vehicles don't match", workorder1, q.getNextVehicle());
-		assertEquals("Vehicles don't match", null, q.getNextVehicle());
+		boolean good = false;
+		
+		try {
+			assertEquals("Special Vehicles don't match", specialWorkorder, q.getNextVehicle());
+			assertEquals("Vehicles don't match", workorder1, q.getNextVehicle());
+			assertEquals("Vehicles don't match", workorder1, q.getNextVehicle());
+			assertEquals("Vehicles don't match", null, q.getNextVehicle());
+		} catch (NoVehicleInQueueException e) {
+			good = true;
+			// The last vehicle is not supposed to exist, failure is expected
+		}
+		assertEquals("Last vehicle not supposed to be there", true, good );
 		//added a null to test for an empty queue
+		
 	}
 
 }

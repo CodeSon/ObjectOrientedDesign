@@ -5,7 +5,9 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import model.NoSuchVehicleException;
+import model.WorkOrder;
 import model.WorkOrderAndPosition;
+import model.NoVehicleInQueueException;
 import controller.Controller;
 
 
@@ -43,7 +45,7 @@ public class View {
 				addVehicleToQ();
 				break;
 			case 3:
-				WorkOrderAndPosition nextVehicle= getNextVehicle();
+				getNextVehicle();
 			case 0:
 				System.exit(0);
 			default: System.out.println("Valid Values 1,2 or 3");
@@ -52,38 +54,57 @@ public class View {
 		}
 
 	}
-
-	private WorkOrderAndPosition getNextVehicle() {
-		// TODO Auto-generated method stub
+	/**
+	 * Asking the controller to get the next vehicle to be
+	 *  inspected(vehicle with lowest queue number)
+	 * and its list of items to be inspected
+	 * @return
+	 */
+	private WorkOrder getNextVehicle() {
+		try{
+			WorkOrder newWorkOrder = contr.getNextWorkOrder();
+			System.out.println(newWorkOrder.getVehicle());
+			System.out.println();
+			System.out.println("-------------------------------------------");
+			System.out.println(newWorkOrder);
+			
+			return newWorkOrder;
+		} catch (NoVehicleInQueueException e) {
+			System.out.println("No vehicle in queue");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
+		
 
 	/**
 	 * AddVehicleToQ method which adds vehicle to the queue
 	 */
 	private void addVehicleToQ() {
-		
+
 		boolean invalidInput = true;
 		while(invalidInput){
-			System.out.println("Please enter vehicle's registration number");
+			System.out.println("Enter in coming vehicle's registration number");
 			System.out.println("-------------------------------------------");
 			System.out.println();
 			String input = "";
-			
+
 			java.util.Scanner in = new Scanner(System.in);
 			in.useLocale(java.util.Locale.US);
 			try{
 				input = in.nextLine();
 				//in.close();
-				
+
 				// asking the controller to find vehicle in the pool and give that vehicle
 				// a queue number to be shown to the customer
 				int qno = contr.findVehicle(input);
-				System.out.println("Vehicle " + input + " has queue number " + qno  );
+				System.out.println("Vehicle " + input + " has queue number: " + qno  );
 				System.out.println();
 				System.out.println("press any number to go back");
 				readUserInput();
-				
+
 				invalidInput = false;
 			} 
 			catch(NoSuchElementException e) {
@@ -96,7 +117,7 @@ public class View {
 			}	
 		}
 	}
-	
+
 	private void showQ() {
 		System.out.println("Inspection Queue");
 		System.out.println("----------------");

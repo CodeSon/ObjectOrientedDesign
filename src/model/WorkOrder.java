@@ -10,6 +10,18 @@ public class WorkOrder {
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
+	
+public String toString(){
+	
+	String list = "";
+	for(WorkOrderItem workOrderItem : checkList)
+	{
+		list = list + "- " + workOrderItem.getDescription() + " " + workOrderItem.getPrice() + "\n";
+		
+	}
+		
+		return  list;
+	}
 
 	private Vehicle vehicle;
 	

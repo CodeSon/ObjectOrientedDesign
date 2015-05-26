@@ -34,15 +34,19 @@ public class Queue {
 	/*
 	 * gets next vehicle in que and having a check to catch an empty queue
 	 */
-
-	public WorkOrder getNextVehicle(){
+/**
+ * 
+ * @return
+ * @throws NoVehicleInQueueException
+ */
+	public WorkOrder getNextVehicle() throws NoVehicleInQueueException{
 
 
 		try{
 			WorkOrderAndPosition vp = queue.removeFirst();
 
 			if (vp==null){
-				return null;
+				throw new NoVehicleInQueueException();
 			}
 			WorkOrder vehicle =vp.getWorkOrder();
 
@@ -51,7 +55,7 @@ public class Queue {
 			return vehicle;
 		}catch(NoSuchElementException e)
 		{
-			return null;
+			throw new NoVehicleInQueueException();
 		}
 
 
