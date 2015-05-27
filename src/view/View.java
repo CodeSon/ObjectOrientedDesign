@@ -1,10 +1,12 @@
 package view;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import model.NoSuchVehicleException;
+import model.Receipt;
 import model.WorkOrder;
 import model.WorkOrderAndPosition;
 import model.NoVehicleInQueueException;
@@ -46,6 +48,7 @@ public class View {
 				break;
 			case 3:
 				getNextVehicle();
+				break;
 			case 0:
 				System.exit(0);
 			default: System.out.println("Valid Values 1,2 or 3");
@@ -61,24 +64,52 @@ public class View {
 	 * @return
 	 */
 	private WorkOrder getNextVehicle() {
+		
+		
 		try{
-			WorkOrder newWorkOrder = contr.getNextWorkOrder();
+				WorkOrder newWorkOrder = contr.getNextWorkOrder();
 			System.out.println(newWorkOrder.getVehicle());
 			System.out.println();
 			System.out.println("-------------------------------------------");
 			System.out.println(newWorkOrder);
+			System.out.println("select 0 to return to main menu or 1 to print");
+			int choose = readUserInput();
+			switch(choose){
+			
+			case 0:
+				break;
+			case 1:
+				printReceipt(newWorkOrder);
+			}
 			
 			return newWorkOrder;
-		} catch (NoVehicleInQueueException e) {
+			
+			
+			
+				} catch (NoVehicleInQueueException e) {
 			System.out.println("No vehicle in queue");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
-	}
+	
+	
 		
-
+	}
+	
+	
+	private void printReceipt(WorkOrder workOrder) {
+		System.out.println("Vehicle Inpsection receipt");
+		System.out.println("--------------------------");
+		Receipt totalCost = contr.createReceipt(workOrder);
+		System.out.println(totalCost);
+		System.out.println("press any number to go back");
+		readUserInput();
+				
+		
+		
+	}
 	/**
 	 * AddVehicleToQ method which adds vehicle to the queue
 	 */
@@ -95,8 +126,6 @@ public class View {
 			in.useLocale(java.util.Locale.US);
 			try{
 				input = in.nextLine();
-				//in.close();
-
 				// asking the controller to find vehicle in the pool and give that vehicle
 				// a queue number to be shown to the customer
 				int qno = contr.findVehicle(input);
@@ -149,7 +178,6 @@ public class View {
 			in.useLocale(java.util.Locale.US);
 			try {
 				choice = in.nextInt();
-				//in.close();
 				return choice;
 
 			} catch (InputMismatchException e) {

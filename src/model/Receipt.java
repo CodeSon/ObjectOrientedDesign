@@ -8,6 +8,18 @@ public class Receipt {
 	LinkedList<WorkOrderItem> itemList;
 	WorkOrderItem orderItem = new WorkOrderItem();
 
+	public String toString(){
+		String list = "";
+		for(WorkOrderItem workOrderItem : itemList)
+		{
+			list = list + "- " + workOrderItem.getDescription() + " " + workOrderItem.getPrice() + "\n";
+
+		}
+		list = list +"-----------------------------" + "\n";
+		list =list + " Total:" + getTotal();
+		return  list;
+	}
+
 	/**
 	 * 
 	 * @param checkList
@@ -47,12 +59,12 @@ public class Receipt {
 
 		return itemList;
 	}
-	
+
 	public StringBuilder printFormat(){
 		print.append("\n");
-	
+
 		return null;
-		
+
 	}
 
 }

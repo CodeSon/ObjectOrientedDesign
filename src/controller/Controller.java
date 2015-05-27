@@ -1,4 +1,6 @@
 package controller;
+import java.util.LinkedList;
+
 import model.InspectionPool;
 import model.NoSuchVehicleException;
 import model.Vehicle;
@@ -8,7 +10,7 @@ import model.Garage;
 import model.WorkOrderItem;
 import model.NoVehicleInQueueException;
 import view.View;
-
+import model.Receipt;
 /**
  * In the controller is where all interactions with the data is
  * carried out
@@ -70,25 +72,33 @@ public class Controller {
 		inspectionPool.addNewOrder(work2m);
 		inspectionPool.addNewOrder(work5m);
 		
-		
-		
-		}
+	}
 	/*
 	 * starts a new inspection. 
-	 * opens garage door and closes it.what happens if one has many cars to be called???
+	 * opens garage door and closes it.
 	 */
-	
-	
 	public int makeNewInspection(){
 		WorkOrder car1 = null;
 		return q.addWorkOrder(car1);
+		
+		}
+	/**
+	 * created a receipt
+	 * @param workOrder
+	 * @return
+	 */
+	
+	public Receipt createReceipt(WorkOrder workOrder){
+		LinkedList<WorkOrderItem> checkList = workOrder.getChecklist();
+	
+	
+		return new Receipt(checkList) ;
 		
 		
 	}
 	
 	
-		
-
+	
 	public WorkOrder getNextWorkOrder() throws NoVehicleInQueueException, Exception{
 		try {
 			return q.getNextVehicle();
