@@ -46,8 +46,7 @@ public WorkOrder getWorkOrder(String regno) throws NoSuchVehicleException {
 	
 	}
 
-//public workOrder getOrderFor(String regnummer){
-	//queue.getFirst();
+
 }
 
 	

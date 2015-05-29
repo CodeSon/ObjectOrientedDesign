@@ -6,8 +6,6 @@ public class Receipt {
 	StringBuilder print = new StringBuilder();
 	// a property to store the itemList
 	LinkedList<WorkOrderItem> itemList;
-	WorkOrderItem orderItem = new WorkOrderItem();
-
 	public String toString(){
 		String list = "";
 		for(WorkOrderItem workOrderItem : itemList)

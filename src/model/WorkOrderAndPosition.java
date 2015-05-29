@@ -42,10 +42,12 @@ public class WorkOrderAndPosition {
 		this.queueNumber = queueNumber;
 
 	}
-	
+	/**
+	 * Returns vehicle currently in the queue
+	 */
 public String toString(){
 		
-		return queueNumber +" " + workorder;
+		return queueNumber +" " + workorder.getVehicle();
 	}
 
 }
