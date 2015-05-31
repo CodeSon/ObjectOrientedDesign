@@ -4,7 +4,6 @@ package model;
  * and the price of it.
  */
 public class WorkOrderItem {
-
 	private String description;
 	private double price;
 
@@ -23,13 +22,9 @@ public class WorkOrderItem {
 
 		this.description = description;
 		this.price = price;
-
 	}
 
-	public WorkOrderItem() {
-		// TODO Auto-generated constructor stub
-	}
-	
+
 	/*
 	 * returns descriptions
 	 */
@@ -43,7 +38,8 @@ public class WorkOrderItem {
 		return price;
 	}
 	/*
-	 * 
+	 * Creating the format of the 
+	 * receipt  
 	 */
 	public String printFormat(){
 		StringBuilder itemFormat = new StringBuilder();

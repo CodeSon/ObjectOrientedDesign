@@ -1,31 +1,31 @@
 package model;
-
 import java.util.LinkedList;
 /*
- * Vehicle, creates a new vehicle object which will be inspected by the program
+ * Vehicle, creates a new vehicle object which will 
+ * be inspected by the program
  */
 public class Vehicle {
 	private String regNummer;
 	private String type;
 	private String model;
 	private int year;
-	
+	/**
+	 * method returning the 
+	 * parameters of the vehicle
+	 */
 	public String toString(){
-		
 		return regNummer+ " " + type + " " + model + " " + year;
 	}
 	/*
-	 * constructor takes licensenumber, type , model and year
+	 * constructor takes license number, type , model and year
 	 * of the newly created vehicle object.
 	 */
 	public Vehicle(String regNummer, String type, String model, int year) {
-
 		this.regNummer = regNummer;
 		this.type = type;
 		this.model = model;
 		this.year = year;
-
-	}
+		}
 
 	/*
 	 * returns license plate number
@@ -35,6 +35,7 @@ public class Vehicle {
 	}
 	/*
 	 * returns type
+	 * of vehicle
 	 */
 	public String getType() {
 		return type;
@@ -46,7 +47,7 @@ public class Vehicle {
 		return model;
 	}
 	/*
-	 * returns year
+	 * returns year model
 	 */
 	public int getYear() {
 		return year;

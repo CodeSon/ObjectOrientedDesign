@@ -15,23 +15,23 @@ import model.Receipt;
  * In the controller is where all interactions with the data is
  * carried out
  * @author David
- * Inspection queue contains a queue of different sets of 
+ * Inspection pool contains a queue of different sets of 
  *  inspections
  * all calls to the model passes here.
  */
-
 public class Controller {
-	
 	InspectionPool inspectionPool = new InspectionPool();
 	Queue q = new Queue();
 	Garage g=new Garage(true, false);
-	
-	
+	/**
+	 * getQueue gets the next queue and returns it
+	 * @return
+	 */
 	public Queue getQueue() {
-
-		return this.q;
+return this.q;
 	}
-/**
+/**The controller method contains 1)vehicles with their parameters
+ * 								2)Work Order items with their respective prices
 	 * 
 	 */
 	public Controller( ){
@@ -71,8 +71,7 @@ public class Controller {
 		inspectionPool.addNewOrder(work3m);
 		inspectionPool.addNewOrder(work2m);
 		inspectionPool.addNewOrder(work5m);
-		
-	}
+		}
 	/*
 	 * starts a new inspection. 
 	 * opens garage door and closes it.
@@ -83,23 +82,24 @@ public class Controller {
 		
 		}
 	/**
-	 * created a receipt
+	 * This method creates a receipt
 	 * @param workOrder
-	 * @return
+	 * @return a reciept with the list of inspections carried 
+	 * out and cost
 	 */
-	
 	public Receipt createReceipt(WorkOrder workOrder){
 		LinkedList<WorkOrderItem> checkList = workOrder.getChecklist();
+	return new Receipt(checkList) ;
+		}
 	
 	
-		return new Receipt(checkList) ;
-		
-		
-	}
-	
-	
-	
-	public WorkOrder getNextWorkOrder() throws NoVehicleInQueueException, Exception{
+	/**getNextWorkOrder gets the next vehicle from the front 
+	 * of the inspection queue. 
+	 * @return the vehicle as well as the work order associated with it
+	 * @throws NoVehicleInQueueException is thrown if the inspection queue is empty
+	 * @throws Exception
+	 */
+public WorkOrder getNextWorkOrder() throws NoVehicleInQueueException, Exception{
 		try {
 			return q.getNextVehicle();
 		} catch (NoVehicleInQueueException e) {
@@ -109,32 +109,15 @@ public class Controller {
 		}
 		
 	}
-	
-	
-	
-	public String enterLicense(){
-	return null;
-	
-}
-
-public String checkInspection(){
-	return null;
-	
-}
-
-public String customerCreditCardInfo(){
-	return null;
-	}
-
-/**
+	/**Find vehicle method checks a matching registration number 
+ * the inspection pool 
  * 
- * @return
- * @throws NoSuchVehicleException
+ * @return the vehicle with a confirmed registration number
+ * @throws NoSuchVehicleException if vehicle is not found
  */
 public int findVehicle(String regno) throws NoSuchVehicleException {
 	try {
 		WorkOrder workorder = this.inspectionPool.getWorkOrder(regno);
-		
 		int myq = this.q.addWorkOrder(workorder);
 		return myq;
 	} catch (NoSuchVehicleException e) {

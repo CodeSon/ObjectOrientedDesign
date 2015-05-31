@@ -1,17 +1,26 @@
 package model;
-
 import java.util.LinkedList;
-
+/**Receipt contains the itemList 
+ * which is of the type LinkedList
+ * 
+ * @author David
+ *
+ */
 public class Receipt {
 	StringBuilder print = new StringBuilder();
 	// a property to store the itemList
 	LinkedList<WorkOrderItem> itemList;
+
+	/**toString method to get
+	 * each work order item in the item list
+	 * and also their respective prices
+	 * 
+	 */
 	public String toString(){
 		String list = "";
 		for(WorkOrderItem workOrderItem : itemList)
 		{
 			list = list + "- " + workOrderItem.getDescription() + " " + workOrderItem.getPrice() + "\n";
-
 		}
 		list = list +"-----------------------------" + "\n";
 		list =list + " Total:" + getTotal();
@@ -27,7 +36,6 @@ public class Receipt {
 	 */
 
 	public Receipt(LinkedList<WorkOrderItem> checkList) {
-
 		itemList = checkList;
 	}
 
@@ -36,31 +44,29 @@ public class Receipt {
 	 * 
 	 * @return the sum total
 	 */
-
 	public double getTotal() {
 		double total = 0;
-
 		for (WorkOrderItem item : itemList) {
-
 			total = total + item.getPrice();
-
 		}
-
 		return total;
 	}
 
 	/**
-	 * 
+	 * Linked list 
 	 * @return the list of items
+	 * in the work order
 	 */
 	public LinkedList<WorkOrderItem> getItems() {
-
 		return itemList;
 	}
-
+	/**Printing the receipt by iterating 
+	 * through the linked list
+	 * 
+	 * @return null
+	 */
 	public StringBuilder printFormat(){
 		print.append("\n");
-
 		return null;
 
 	}

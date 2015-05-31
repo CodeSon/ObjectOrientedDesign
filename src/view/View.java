@@ -12,15 +12,12 @@ import model.WorkOrderAndPosition;
 import model.NoVehicleInQueueException;
 import controller.Controller;
 
-
+/**
+ * 
+ * @author David
+ *
+ */
 public class View {
-
-
-	public void makeNewInspection(){
-
-
-	}
-
 	private Controller contr;
 
 	/*
@@ -65,7 +62,6 @@ public class View {
 	 */
 	private WorkOrder getNextVehicle() {
 		
-		
 		try{
 				WorkOrder newWorkOrder = contr.getNextWorkOrder();
 			System.out.println(newWorkOrder.getVehicle());
@@ -84,20 +80,14 @@ public class View {
 			
 			return newWorkOrder;
 			
-			
-			
-				} catch (NoVehicleInQueueException e) {
+			} catch (NoVehicleInQueueException e) {
 			System.out.println("No vehicle in queue");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
-	
-	
-		
-	}
-	
+}
 	
 	private void printReceipt(WorkOrder workOrder) {
 		System.out.println("Vehicle Inpsection receipt");
@@ -106,22 +96,17 @@ public class View {
 		System.out.println(totalCost);
 		System.out.println("press any number to go back");
 		readUserInput();
-				
-		
-		
-	}
+				}
 	/**
 	 * AddVehicleToQ method which adds vehicle to the queue
 	 */
 	private void addVehicleToQ() {
-
 		boolean invalidInput = true;
 		while(invalidInput){
 			System.out.println("Enter in coming vehicle's registration number");
 			System.out.println("-------------------------------------------");
 			System.out.println();
 			String input = "";
-
 			java.util.Scanner in = new Scanner(System.in);
 			in.useLocale(java.util.Locale.US);
 			try{
@@ -211,8 +196,5 @@ public class View {
 		System.out.println();
 		System.out.println("0. Exit App");
 	}
-	public String enterLicense(){
-		return null;
-
-	}
+	
 }

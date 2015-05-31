@@ -45,8 +45,8 @@ public class WorkOrderAndPosition {
 	/**
 	 * Returns vehicle currently in the queue
 	 */
-public String toString(){
-		
+	public String toString(){
+
 		return queueNumber +" " + workorder.getVehicle();
 	}
 

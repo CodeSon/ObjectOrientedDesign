@@ -3,7 +3,6 @@ package model;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-
 /**
  * This is the class which manages the queue of cars,
  * it has an ordered lists of vehicle (knows which is first and last)
@@ -14,15 +13,8 @@ import java.util.NoSuchElementException;
  *
  */
 public class Queue {
-	
 	public LinkedList<WorkOrderAndPosition> getQ(){
-		
-		
 		return this.queue;
-	}
-
-	public Queue(){
-
 	}
 	/**
 	 * LinkedList declaration so as to be able to add a 
@@ -31,17 +23,15 @@ public class Queue {
 	int nextAvailableQueueNumber = 0;
 	LinkedList<WorkOrderAndPosition> queue= new LinkedList<WorkOrderAndPosition>();
 
-	/*
-	 * gets next vehicle in que and having a check to catch an empty queue
+
+	/**Method which gets next vehicle in queue
+	 *  and having a check to catch an empty queue
+	 * 
+	 * @return vehicle
+	 * @throws NoVehicleInQueueException if the queue is found to 
+	 * be empty
 	 */
-/**
- * 
- * @return
- * @throws NoVehicleInQueueException
- */
 	public WorkOrder getNextVehicle() throws NoVehicleInQueueException{
-
-
 		try{
 			WorkOrderAndPosition vp = queue.removeFirst();
 
@@ -49,27 +39,18 @@ public class Queue {
 				throw new NoVehicleInQueueException();
 			}
 			WorkOrder vehicle =vp.getWorkOrder();
-
-
-
 			return vehicle;
 		}catch(NoSuchElementException e)
 		{
 			throw new NoVehicleInQueueException();
 		}
-
-
 	}
 	/*
-	 * adds a new vehicle to the queue.
+	 * Adds a new vehicle to the inspection queue.
 	 */
 
 	public int addWorkOrder(WorkOrder workorder){
-
-
-
 		queue.add(new WorkOrderAndPosition(workorder,nextAvailableQueueNumber)); 
-
 		return this.nextAvailableQueueNumber++;
 
 	}

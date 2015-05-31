@@ -10,16 +10,16 @@ public class WorkOrder {
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
-	
+/**	
+ * Method for printing the work order item's description and also
+ * price for each item inspected
+ */
 public String toString(){
-	
 	String list = "";
 	for(WorkOrderItem workOrderItem : checkList)
 	{
 		list = list + "- " + workOrderItem.getDescription() + " " + workOrderItem.getPrice() + "\n";
-		
-	}
-		
+		}
 		return  list;
 	}
 
@@ -30,8 +30,10 @@ public String toString(){
 	 * new work order to the list or to get the next work order in line
 	 */
 	private LinkedList<WorkOrderItem> checkList = new LinkedList<WorkOrderItem> ();
-	
-	
+	/**
+	 * Returning the work order
+	 * @param vehicle
+	 */
 	public WorkOrder(Vehicle vehicle){
 		this.setVehicle(vehicle);
 		} 
@@ -40,43 +42,35 @@ public String toString(){
 	 * @param addItem to be tested in Junit
 	 */
 	public void addItem(WorkOrderItem item){
-		
 		this.checkList.add(item);
 	}
 	/*
 	 * returns the linkedlist
+	 * which is a checklist if items to be 
+	 * inspected on the vehicle
 	 */
 	public LinkedList<WorkOrderItem> getChecklist() {
 		return this.checkList;
 	}
-	
-	
 	/**
 	 * 
-	 * @param createReceipt to be tested in Junit
-	 */
-	/*
-	 * creates a receipt object 
+	 * @param create Receipt object to be tested in Junit
 	 */
 	public Receipt createReciept(){
 		Receipt receipt = new Receipt(checkList);
-		
 		return receipt;
-		 
-		}
+		 }
 	
 	/*
 	 * returns vehicle
 	 */
-
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
 	
+	
+	//Returning vehicle's registration number
 	public String getRegistrationNumber(){
-		
-		
-		
 		return vehicle.getRegNummer();
 		
 	}

@@ -9,11 +9,10 @@ import controller.Controller;
  * program. Contains the main method. 
  * @author David
  *
-  */
+ */
 public class Startup {
 
 	public static void main(String[] args) {
-		
 		Controller contr = new Controller();
 		new View(contr).run();
 	}

@@ -1,17 +1,20 @@
 package model;
-
+/**
+ * 
+ * @author David
+ *
+ */
 public class Garage {
 	private Boolean doorOpen;
 	private Boolean doorClosed;
 	
 	public boolean openGarageDoor(){
 		if(doorOpen == true){
-		
-			System.out.println("Garage door is open: ");
+		System.out.println("Garage door is open: ");
 		return false;
-		}return true;
-		
-	}
+		}
+		return true;
+		}
 	
 	public boolean closeGarageDoor(Boolean doorClosed){
 		if(doorClosed = true){
@@ -19,9 +22,7 @@ public class Garage {
 		return true;
 		}
 		return false;
-		
-	}
-	
+		}
 	
 	
 	public Garage(Boolean doorOpen, Boolean doorClosed){
