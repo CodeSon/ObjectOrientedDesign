@@ -1,7 +1,5 @@
 
 package startup;
-
-
 import view.View;
 import controller.Controller;
 /*

@@ -12,7 +12,9 @@ import model.WorkOrderAndPosition;
 import model.NoVehicleInQueueException;
 import controller.Controller;
 
-/**
+/**Contains all user inputs and 
+ * print outs
+ * Instances of the controller are also used here
  * 
  * @author David
  *
