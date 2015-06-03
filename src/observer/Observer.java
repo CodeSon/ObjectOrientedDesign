@@ -1,6 +1,8 @@
 package observer;
 /**
- * Created an observer class which will 
+ * Created an observer(abstract) class with the method which will be 
+ * called during receipt printing
+ * 
  * @author David
  *
  */

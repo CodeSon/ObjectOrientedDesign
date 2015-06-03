@@ -67,7 +67,7 @@ public class View extends Observer{
 		try{
 				WorkOrder newWorkOrder = contr.getNextWorkOrder();
 				this.subject = newWorkOrder;
-				this.subject.attach(this);
+				this.subject.attach(this);//All observers added here when Attach is called
 			System.out.println(newWorkOrder.getVehicle());
 			System.out.println();
 			System.out.println("-------------------------------------------");
@@ -200,7 +200,8 @@ public class View extends Observer{
 		System.out.println("0. Exit App");
 	}
 	@Override
-	public void update() {
+	//Inheriting from the observer class
+	 public void update() {
 		System.out.println("WorkOrder has been changed: \n" + subject);
 		
 	}
