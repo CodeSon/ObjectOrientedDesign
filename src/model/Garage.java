@@ -1,10 +1,10 @@
-package model;
+/**package model;
 /**
  * 
  * @author David
  *
  */
-public class Garage {
+/**public class Garage {
 	private Boolean doorOpen;
 	private Boolean doorClosed;
 	
@@ -31,3 +31,4 @@ public class Garage {
 	}
 
 }
+**/

@@ -6,7 +6,7 @@ import model.NoSuchVehicleException;
 import model.Vehicle;
 import model.WorkOrder;
 import model.Queue;
-import model.Garage;
+//import model.Garage;
 import model.WorkOrderItem;
 import model.NoVehicleInQueueException;
 import view.View;
@@ -22,7 +22,7 @@ import model.Receipt;
 public class Controller {
 	InspectionPool inspectionPool = new InspectionPool();
 	Queue q = new Queue();
-	Garage g=new Garage(true, false);
+//	Garage g=new Garage(true, false);
 	/**
 	 * getQueue gets the next queue and returns it
 	 * @return

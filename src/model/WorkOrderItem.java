@@ -24,7 +24,6 @@ public class WorkOrderItem {
 		this.price = price;
 	}
 
-
 	/*
 	 * returns descriptions
 	 */

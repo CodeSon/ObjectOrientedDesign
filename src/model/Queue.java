@@ -1,8 +1,6 @@
 package model;
-
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
-
 /**
  * This is the class which manages the queue of cars,
  * it has an ordered lists of vehicle (knows which is first and last)
@@ -54,20 +52,6 @@ public class Queue {
 		return this.nextAvailableQueueNumber++;
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
