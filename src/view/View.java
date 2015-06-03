@@ -1,5 +1,4 @@
 package view;
-import java.lang.ProcessBuilder.Redirect;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
@@ -11,6 +10,7 @@ import model.WorkOrder;
 import model.WorkOrderAndPosition;
 import model.NoVehicleInQueueException;
 import controller.Controller;
+import observer.Observer;
 
 /**Contains all user inputs and 
  * print outs
@@ -19,7 +19,7 @@ import controller.Controller;
  * @author David
  *
  */
-public class View {
+public class View extends Observer{
 	private Controller contr;
 
 	/*
@@ -66,6 +66,8 @@ public class View {
 		
 		try{
 				WorkOrder newWorkOrder = contr.getNextWorkOrder();
+				this.subject = newWorkOrder;
+				this.subject.attach(this);
 			System.out.println(newWorkOrder.getVehicle());
 			System.out.println();
 			System.out.println("-------------------------------------------");
@@ -169,8 +171,7 @@ public class View {
 
 			} catch (InputMismatchException e) {
 				System.out.println("input mismatch exception: The input must be a number :)");
-			}//TODO: Implement 2 more try catches and one try catch for the EXEPTION CLASS
-
+			}
 			catch(NoSuchElementException e)
 			{
 				System.out.println("You have to write something");
@@ -197,6 +198,11 @@ public class View {
 		System.out.println("3. Get next Vehicle from the queue");
 		System.out.println();
 		System.out.println("0. Exit App");
+	}
+	@Override
+	public void update() {
+		System.out.println("WorkOrder has been changed: \n" + subject);
+		
 	}
 	
 }

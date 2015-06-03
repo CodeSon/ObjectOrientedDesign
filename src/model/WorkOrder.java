@@ -1,12 +1,15 @@
 package model;
 import java.util.LinkedList;
+
+import observer.Subject;
 /**
  * wpork order class has 1) A vehicle
  * 						 2) check list
+ * and everything that happens to a particular vehicle
  * @author David
  *
  */
-public class WorkOrder {
+public class WorkOrder extends Subject{
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
@@ -46,10 +49,11 @@ public String toString(){
 	}
 	/*
 	 * returns the linkedlist
-	 * which is a checklist if items to be 
+	 * which is a checklist of items to be 
 	 * inspected on the vehicle
 	 */
 	public LinkedList<WorkOrderItem> getChecklist() {
+		notifyAllObservers();
 		return this.checkList;
 	}
 	/**
@@ -58,6 +62,7 @@ public String toString(){
 	 */
 	public Receipt createReciept(){
 		Receipt receipt = new Receipt(checkList);
+		notifyAllObservers();
 		return receipt;
 		 }
 	
@@ -67,20 +72,10 @@ public String toString(){
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
-	
-	
 	//Returning vehicle's registration number
 	public String getRegistrationNumber(){
 		return vehicle.getRegNummer();
 		
 	}
-
-	 
-	
-	
-	
-	
-	
-	
 
 }
